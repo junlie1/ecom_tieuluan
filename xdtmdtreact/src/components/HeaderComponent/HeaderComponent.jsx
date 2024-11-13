@@ -14,7 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { resetUser } from '../../redux/slides/userSlide.js';
 
 
-const HeaderComponent = () => {
+const HeaderComponent = ({isHiddenSearch = false, isHiddenCart = false}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [userName,setUserName] = useState('');
@@ -41,23 +41,28 @@ const HeaderComponent = () => {
 
     const content = (
         <div>
-            <WrapperContentPopup onClick={handleLogout}>Đăng xuất</WrapperContentPopup>
             <WrapperContentPopup onClick = {() => navigate('/profile-user')}>Thông tin cá nhân</WrapperContentPopup>
+            {user?.isAdmin &&(
+                <WrapperContentPopup onClick = {() => navigate('/system/admin')}>Quản lí hệ thống</WrapperContentPopup>
+            )}
+            <WrapperContentPopup onClick={handleLogout}>Đăng xuất</WrapperContentPopup>
         </div>
     );
     
   return (
     <div style={{width: '100%', background: 'rgb(26,248,255)',justifyContent: 'center'}}>
-        <WrapperHeader gutter={16}>
+        <WrapperHeader gutter={16} style={{justifyContent:isHiddenSearch && isHiddenCart ? 'space-between' : 'unset'}}>
             <Col span={5} style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                 <WrapperTextHeader>NHOM 3</WrapperTextHeader>
             </Col>
-            <Col span={13}>
+            {!isHiddenSearch && (
+                <Col span={13}>
                 <ButtonInputSearch
                 size="large"
                 textButton="Tìm Kiếm"
                 placeholder="input search text" />
             </Col>
+            )}
             <Col span={6}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <WrapperHeaderAccount>
@@ -85,13 +90,17 @@ const HeaderComponent = () => {
 
                         
                     </WrapperHeaderAccount>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
+
+                    {!isHiddenCart && (
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Badge count = {4} size='small'>
                             <ShoppingCartOutlined style={{ fontSize: '30px', color: '#fff' }} />
                         </Badge>
 
                         <WrapperTextHeaderSmall>Giỏ hàng</WrapperTextHeaderSmall>
                     </div>
+                    )}
+                    
                 </div>
             </Col>
         </WrapperHeader>
