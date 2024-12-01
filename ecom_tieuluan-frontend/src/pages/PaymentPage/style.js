@@ -13,6 +13,63 @@ export const WrapperStyleHeader = styled.div`
     font-size: 13px;
   }
 `
+export const WrapperPaymentSection = styled.div`
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+`;
+
+export const SectionTitle = styled.h4`
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 15px;
+`;
+
+export const PaymentOptions = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+export const PaymentOption = styled.label`
+  display: flex;
+  align-items: center;
+  background: rgb(245, 248, 251);
+  padding: 10px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #9255fd;
+  }
+
+  input[type="radio"] {
+    margin-right: 10px;
+  }
+`;
+
+export const PaymentButton = styled.button`
+  width: 100%;
+  height: 48px;
+  background: rgb(255, 57, 69);
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #e6363b;
+  }
+`;
+
 export const WrapperStyleHeaderDilivery = styled.div`
   background: rgb(255, 255, 255);
   padding: 9px 16px;
